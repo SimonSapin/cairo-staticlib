@@ -1,0 +1,6 @@
+[package]
+name = "cairo-static-sys"
+version = "0.1.0"
+authors = ["Simon Sapin <simon.sapin@exyr.org>"]
+
+[dependencies]
