@@ -2,5 +2,15 @@
 name = "cairo-static-sys"
 version = "0.1.0"
 authors = ["Simon Sapin <simon.sapin@exyr.org>"]
+license = "LGPL-2.1 or MPL-1.1"
+repository = "https://github.com/SimonSapin/cairo-staticlib"
+description = "The cairo graphics library, statically linked with minimal dependencies"
+exclude = [
+    "/cairo-*/test/reference/*",
+    "/cairo-*/doc/public/html/*",
+    "/cairo-*/doc/public/xml/*",
+    "/cairo-*/**/examples/*",
+]
 
 [dependencies]
+libc = "0.2"
