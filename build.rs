@@ -8,7 +8,7 @@ fn main() {
     let cairo_subdir = "cairo-1.15.8";
     let disabled_cairo_features = r#"
         xlib xcb qt quartz win32 skia os2 beos drm gallium gl directfb gobject fc ft
-        png svg
+        png svg ps pdf script interpreter
     "#;
 
     let src_dir = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").unwrap());
@@ -23,9 +23,16 @@ fn main() {
     create_dir_if_not_exists(&pixman_out_dir);
     create_dir_if_not_exists(&cairo_out_dir);
 
+    let configure_envs = if env::var("TARGET").unwrap().contains("musl") {
+        vec![("CC", "musl-gcc")]
+    } else {
+        vec![]
+    };
+
     run(Command::new(pixman_src_dir.join("configure"))
         .arg("--disable-gtk")
         .arg("--disable-libpng")
+        .envs(configure_envs.clone())
         .current_dir(&pixman_out_dir)
     );
     run(Command::new("make")
@@ -35,6 +42,8 @@ fn main() {
 
     run(Command::new(cairo_src_dir.join("configure"))
         .args(disabled_cairo_features.split_whitespace().map(|f| format!("--disable-{}", f)))
+        .envs(configure_envs)
+        .env("pixman_LIBS", &pixman_libs_dir)
         .current_dir(&cairo_out_dir)
     );
     run(Command::new("make")
