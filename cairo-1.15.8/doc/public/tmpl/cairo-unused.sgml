@@ -1,0 +1,24 @@
+<!-- ##### STRUCT cairo_skia_context ##### -->
+<para>
+
+</para>
+
+@base: 
+@original: 
+@target: 
+@matrix: 
+@canvas: 
+@paint: 
+@path: 
+@source: 
+@source_image: 
+@source_extra: 
+
+<!-- ##### STRUCT cairo_skia_surface ##### -->
+<para>
+
+</para>
+
+@image: 
+@bitmap: 
+
