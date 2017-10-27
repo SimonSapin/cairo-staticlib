@@ -202,7 +202,50 @@ impl Clone for _cairo_user_data_key {
     fn clone(&self) -> Self { *self }
 }
 pub type cairo_user_data_key_t = _cairo_user_data_key;
-#[repr(u32)]
+pub const CAIRO_STATUS_SUCCESS: _cairo_status = 0;
+pub const CAIRO_STATUS_NO_MEMORY: _cairo_status = 1;
+pub const CAIRO_STATUS_INVALID_RESTORE: _cairo_status = 2;
+pub const CAIRO_STATUS_INVALID_POP_GROUP: _cairo_status = 3;
+pub const CAIRO_STATUS_NO_CURRENT_POINT: _cairo_status = 4;
+pub const CAIRO_STATUS_INVALID_MATRIX: _cairo_status = 5;
+pub const CAIRO_STATUS_INVALID_STATUS: _cairo_status = 6;
+pub const CAIRO_STATUS_NULL_POINTER: _cairo_status = 7;
+pub const CAIRO_STATUS_INVALID_STRING: _cairo_status = 8;
+pub const CAIRO_STATUS_INVALID_PATH_DATA: _cairo_status = 9;
+pub const CAIRO_STATUS_READ_ERROR: _cairo_status = 10;
+pub const CAIRO_STATUS_WRITE_ERROR: _cairo_status = 11;
+pub const CAIRO_STATUS_SURFACE_FINISHED: _cairo_status = 12;
+pub const CAIRO_STATUS_SURFACE_TYPE_MISMATCH: _cairo_status = 13;
+pub const CAIRO_STATUS_PATTERN_TYPE_MISMATCH: _cairo_status = 14;
+pub const CAIRO_STATUS_INVALID_CONTENT: _cairo_status = 15;
+pub const CAIRO_STATUS_INVALID_FORMAT: _cairo_status = 16;
+pub const CAIRO_STATUS_INVALID_VISUAL: _cairo_status = 17;
+pub const CAIRO_STATUS_FILE_NOT_FOUND: _cairo_status = 18;
+pub const CAIRO_STATUS_INVALID_DASH: _cairo_status = 19;
+pub const CAIRO_STATUS_INVALID_DSC_COMMENT: _cairo_status = 20;
+pub const CAIRO_STATUS_INVALID_INDEX: _cairo_status = 21;
+pub const CAIRO_STATUS_CLIP_NOT_REPRESENTABLE: _cairo_status = 22;
+pub const CAIRO_STATUS_TEMP_FILE_ERROR: _cairo_status = 23;
+pub const CAIRO_STATUS_INVALID_STRIDE: _cairo_status = 24;
+pub const CAIRO_STATUS_FONT_TYPE_MISMATCH: _cairo_status = 25;
+pub const CAIRO_STATUS_USER_FONT_IMMUTABLE: _cairo_status = 26;
+pub const CAIRO_STATUS_USER_FONT_ERROR: _cairo_status = 27;
+pub const CAIRO_STATUS_NEGATIVE_COUNT: _cairo_status = 28;
+pub const CAIRO_STATUS_INVALID_CLUSTERS: _cairo_status = 29;
+pub const CAIRO_STATUS_INVALID_SLANT: _cairo_status = 30;
+pub const CAIRO_STATUS_INVALID_WEIGHT: _cairo_status = 31;
+pub const CAIRO_STATUS_INVALID_SIZE: _cairo_status = 32;
+pub const CAIRO_STATUS_USER_FONT_NOT_IMPLEMENTED: _cairo_status = 33;
+pub const CAIRO_STATUS_DEVICE_TYPE_MISMATCH: _cairo_status = 34;
+pub const CAIRO_STATUS_DEVICE_ERROR: _cairo_status = 35;
+pub const CAIRO_STATUS_INVALID_MESH_CONSTRUCTION: _cairo_status = 36;
+pub const CAIRO_STATUS_DEVICE_FINISHED: _cairo_status = 37;
+pub const CAIRO_STATUS_JBIG2_GLOBAL_MISSING: _cairo_status = 38;
+pub const CAIRO_STATUS_PNG_ERROR: _cairo_status = 39;
+pub const CAIRO_STATUS_FREETYPE_ERROR: _cairo_status = 40;
+pub const CAIRO_STATUS_WIN32_GDI_ERROR: _cairo_status = 41;
+pub const CAIRO_STATUS_TAG_ERROR: _cairo_status = 42;
+pub const CAIRO_STATUS_LAST_STATUS: _cairo_status = 43;
 /// cairo_status_t:
 /// @CAIRO_STATUS_SUCCESS: no error has occurred (Since 1.0)
 /// @CAIRO_STATUS_NO_MEMORY: out of memory (Since 1.0)
@@ -265,55 +308,11 @@ pub type cairo_user_data_key_t = _cairo_user_data_key;
 /// to get a human-readable representation of an error message.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_status {
-    CAIRO_STATUS_SUCCESS = 0,
-    CAIRO_STATUS_NO_MEMORY = 1,
-    CAIRO_STATUS_INVALID_RESTORE = 2,
-    CAIRO_STATUS_INVALID_POP_GROUP = 3,
-    CAIRO_STATUS_NO_CURRENT_POINT = 4,
-    CAIRO_STATUS_INVALID_MATRIX = 5,
-    CAIRO_STATUS_INVALID_STATUS = 6,
-    CAIRO_STATUS_NULL_POINTER = 7,
-    CAIRO_STATUS_INVALID_STRING = 8,
-    CAIRO_STATUS_INVALID_PATH_DATA = 9,
-    CAIRO_STATUS_READ_ERROR = 10,
-    CAIRO_STATUS_WRITE_ERROR = 11,
-    CAIRO_STATUS_SURFACE_FINISHED = 12,
-    CAIRO_STATUS_SURFACE_TYPE_MISMATCH = 13,
-    CAIRO_STATUS_PATTERN_TYPE_MISMATCH = 14,
-    CAIRO_STATUS_INVALID_CONTENT = 15,
-    CAIRO_STATUS_INVALID_FORMAT = 16,
-    CAIRO_STATUS_INVALID_VISUAL = 17,
-    CAIRO_STATUS_FILE_NOT_FOUND = 18,
-    CAIRO_STATUS_INVALID_DASH = 19,
-    CAIRO_STATUS_INVALID_DSC_COMMENT = 20,
-    CAIRO_STATUS_INVALID_INDEX = 21,
-    CAIRO_STATUS_CLIP_NOT_REPRESENTABLE = 22,
-    CAIRO_STATUS_TEMP_FILE_ERROR = 23,
-    CAIRO_STATUS_INVALID_STRIDE = 24,
-    CAIRO_STATUS_FONT_TYPE_MISMATCH = 25,
-    CAIRO_STATUS_USER_FONT_IMMUTABLE = 26,
-    CAIRO_STATUS_USER_FONT_ERROR = 27,
-    CAIRO_STATUS_NEGATIVE_COUNT = 28,
-    CAIRO_STATUS_INVALID_CLUSTERS = 29,
-    CAIRO_STATUS_INVALID_SLANT = 30,
-    CAIRO_STATUS_INVALID_WEIGHT = 31,
-    CAIRO_STATUS_INVALID_SIZE = 32,
-    CAIRO_STATUS_USER_FONT_NOT_IMPLEMENTED = 33,
-    CAIRO_STATUS_DEVICE_TYPE_MISMATCH = 34,
-    CAIRO_STATUS_DEVICE_ERROR = 35,
-    CAIRO_STATUS_INVALID_MESH_CONSTRUCTION = 36,
-    CAIRO_STATUS_DEVICE_FINISHED = 37,
-    CAIRO_STATUS_JBIG2_GLOBAL_MISSING = 38,
-    CAIRO_STATUS_PNG_ERROR = 39,
-    CAIRO_STATUS_FREETYPE_ERROR = 40,
-    CAIRO_STATUS_WIN32_GDI_ERROR = 41,
-    CAIRO_STATUS_TAG_ERROR = 42,
-    CAIRO_STATUS_LAST_STATUS = 43,
-}
+pub type _cairo_status = ::libc::c_uint;
 pub use self::_cairo_status as cairo_status_t;
-#[repr(u32)]
+pub const CAIRO_CONTENT_COLOR: _cairo_content = 4096;
+pub const CAIRO_CONTENT_ALPHA: _cairo_content = 8192;
+pub const CAIRO_CONTENT_COLOR_ALPHA: _cairo_content = 12288;
 /// cairo_content_t:
 /// @CAIRO_CONTENT_COLOR: The surface will hold color content only. (Since 1.0)
 /// @CAIRO_CONTENT_ALPHA: The surface will hold alpha content only. (Since 1.0)
@@ -328,14 +327,15 @@ pub use self::_cairo_status as cairo_status_t;
 /// implementation can detect the error if users confuse the two types.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_content {
-    CAIRO_CONTENT_COLOR = 4096,
-    CAIRO_CONTENT_ALPHA = 8192,
-    CAIRO_CONTENT_COLOR_ALPHA = 12288,
-}
+pub type _cairo_content = ::libc::c_uint;
 pub use self::_cairo_content as cairo_content_t;
-#[repr(i32)]
+pub const CAIRO_FORMAT_INVALID: _cairo_format = -1;
+pub const CAIRO_FORMAT_ARGB32: _cairo_format = 0;
+pub const CAIRO_FORMAT_RGB24: _cairo_format = 1;
+pub const CAIRO_FORMAT_A8: _cairo_format = 2;
+pub const CAIRO_FORMAT_A1: _cairo_format = 3;
+pub const CAIRO_FORMAT_RGB16_565: _cairo_format = 4;
+pub const CAIRO_FORMAT_RGB30: _cairo_format = 5;
 /// cairo_format_t:
 /// @CAIRO_FORMAT_INVALID: no such format exists or is supported.
 /// @CAIRO_FORMAT_ARGB32: each pixel is a 32-bit quantity, with
@@ -365,16 +365,7 @@ pub use self::_cairo_content as cairo_content_t;
 /// New entries may be added in future versions.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_format {
-    CAIRO_FORMAT_INVALID = -1,
-    CAIRO_FORMAT_ARGB32 = 0,
-    CAIRO_FORMAT_RGB24 = 1,
-    CAIRO_FORMAT_A8 = 2,
-    CAIRO_FORMAT_A1 = 3,
-    CAIRO_FORMAT_RGB16_565 = 4,
-    CAIRO_FORMAT_RGB30 = 5,
-}
+pub type _cairo_format = ::libc::c_int;
 pub use self::_cairo_format as cairo_format_t;
 /// cairo_write_func_t:
 /// @closure: the output closure
@@ -482,7 +473,35 @@ extern "C" {
 extern "C" {
     pub fn cairo_pop_group_to_source(cr: *mut cairo_t);
 }
-#[repr(u32)]
+pub const CAIRO_OPERATOR_CLEAR: _cairo_operator = 0;
+pub const CAIRO_OPERATOR_SOURCE: _cairo_operator = 1;
+pub const CAIRO_OPERATOR_OVER: _cairo_operator = 2;
+pub const CAIRO_OPERATOR_IN: _cairo_operator = 3;
+pub const CAIRO_OPERATOR_OUT: _cairo_operator = 4;
+pub const CAIRO_OPERATOR_ATOP: _cairo_operator = 5;
+pub const CAIRO_OPERATOR_DEST: _cairo_operator = 6;
+pub const CAIRO_OPERATOR_DEST_OVER: _cairo_operator = 7;
+pub const CAIRO_OPERATOR_DEST_IN: _cairo_operator = 8;
+pub const CAIRO_OPERATOR_DEST_OUT: _cairo_operator = 9;
+pub const CAIRO_OPERATOR_DEST_ATOP: _cairo_operator = 10;
+pub const CAIRO_OPERATOR_XOR: _cairo_operator = 11;
+pub const CAIRO_OPERATOR_ADD: _cairo_operator = 12;
+pub const CAIRO_OPERATOR_SATURATE: _cairo_operator = 13;
+pub const CAIRO_OPERATOR_MULTIPLY: _cairo_operator = 14;
+pub const CAIRO_OPERATOR_SCREEN: _cairo_operator = 15;
+pub const CAIRO_OPERATOR_OVERLAY: _cairo_operator = 16;
+pub const CAIRO_OPERATOR_DARKEN: _cairo_operator = 17;
+pub const CAIRO_OPERATOR_LIGHTEN: _cairo_operator = 18;
+pub const CAIRO_OPERATOR_COLOR_DODGE: _cairo_operator = 19;
+pub const CAIRO_OPERATOR_COLOR_BURN: _cairo_operator = 20;
+pub const CAIRO_OPERATOR_HARD_LIGHT: _cairo_operator = 21;
+pub const CAIRO_OPERATOR_SOFT_LIGHT: _cairo_operator = 22;
+pub const CAIRO_OPERATOR_DIFFERENCE: _cairo_operator = 23;
+pub const CAIRO_OPERATOR_EXCLUSION: _cairo_operator = 24;
+pub const CAIRO_OPERATOR_HSL_HUE: _cairo_operator = 25;
+pub const CAIRO_OPERATOR_HSL_SATURATION: _cairo_operator = 26;
+pub const CAIRO_OPERATOR_HSL_COLOR: _cairo_operator = 27;
+pub const CAIRO_OPERATOR_HSL_LUMINOSITY: _cairo_operator = 28;
 /// cairo_operator_t:
 /// @CAIRO_OPERATOR_CLEAR: clear destination layer (bounded) (Since 1.0)
 /// @CAIRO_OPERATOR_SOURCE: replace destination layer (bounded) (Since 1.0)
@@ -562,38 +581,7 @@ extern "C" {
 /// <ulink url="http://cairographics.org/operators/">http://cairographics.org/operators/</ulink>.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_operator {
-    CAIRO_OPERATOR_CLEAR = 0,
-    CAIRO_OPERATOR_SOURCE = 1,
-    CAIRO_OPERATOR_OVER = 2,
-    CAIRO_OPERATOR_IN = 3,
-    CAIRO_OPERATOR_OUT = 4,
-    CAIRO_OPERATOR_ATOP = 5,
-    CAIRO_OPERATOR_DEST = 6,
-    CAIRO_OPERATOR_DEST_OVER = 7,
-    CAIRO_OPERATOR_DEST_IN = 8,
-    CAIRO_OPERATOR_DEST_OUT = 9,
-    CAIRO_OPERATOR_DEST_ATOP = 10,
-    CAIRO_OPERATOR_XOR = 11,
-    CAIRO_OPERATOR_ADD = 12,
-    CAIRO_OPERATOR_SATURATE = 13,
-    CAIRO_OPERATOR_MULTIPLY = 14,
-    CAIRO_OPERATOR_SCREEN = 15,
-    CAIRO_OPERATOR_OVERLAY = 16,
-    CAIRO_OPERATOR_DARKEN = 17,
-    CAIRO_OPERATOR_LIGHTEN = 18,
-    CAIRO_OPERATOR_COLOR_DODGE = 19,
-    CAIRO_OPERATOR_COLOR_BURN = 20,
-    CAIRO_OPERATOR_HARD_LIGHT = 21,
-    CAIRO_OPERATOR_SOFT_LIGHT = 22,
-    CAIRO_OPERATOR_DIFFERENCE = 23,
-    CAIRO_OPERATOR_EXCLUSION = 24,
-    CAIRO_OPERATOR_HSL_HUE = 25,
-    CAIRO_OPERATOR_HSL_SATURATION = 26,
-    CAIRO_OPERATOR_HSL_COLOR = 27,
-    CAIRO_OPERATOR_HSL_LUMINOSITY = 28,
-}
+pub type _cairo_operator = ::libc::c_uint;
 pub use self::_cairo_operator as cairo_operator_t;
 extern "C" {
     pub fn cairo_set_operator(cr: *mut cairo_t, op: cairo_operator_t);
@@ -617,7 +605,13 @@ extern "C" {
 extern "C" {
     pub fn cairo_set_tolerance(cr: *mut cairo_t, tolerance: f64);
 }
-#[repr(u32)]
+pub const CAIRO_ANTIALIAS_DEFAULT: _cairo_antialias = 0;
+pub const CAIRO_ANTIALIAS_NONE: _cairo_antialias = 1;
+pub const CAIRO_ANTIALIAS_GRAY: _cairo_antialias = 2;
+pub const CAIRO_ANTIALIAS_SUBPIXEL: _cairo_antialias = 3;
+pub const CAIRO_ANTIALIAS_FAST: _cairo_antialias = 4;
+pub const CAIRO_ANTIALIAS_GOOD: _cairo_antialias = 5;
+pub const CAIRO_ANTIALIAS_BEST: _cairo_antialias = 6;
 /// cairo_antialias_t:
 /// @CAIRO_ANTIALIAS_DEFAULT: Use the default antialiasing for
 /// the subsystem and target device, since 1.0
@@ -653,22 +647,14 @@ extern "C" {
 /// the backend, typically this will be similar to @CAIRO_ANTIALIAS_GOOD.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_antialias {
-    CAIRO_ANTIALIAS_DEFAULT = 0,
-    CAIRO_ANTIALIAS_NONE = 1,
-    CAIRO_ANTIALIAS_GRAY = 2,
-    CAIRO_ANTIALIAS_SUBPIXEL = 3,
-    CAIRO_ANTIALIAS_FAST = 4,
-    CAIRO_ANTIALIAS_GOOD = 5,
-    CAIRO_ANTIALIAS_BEST = 6,
-}
+pub type _cairo_antialias = ::libc::c_uint;
 pub use self::_cairo_antialias as cairo_antialias_t;
 extern "C" {
     pub fn cairo_set_antialias(cr: *mut cairo_t,
                                antialias: cairo_antialias_t);
 }
-#[repr(u32)]
+pub const CAIRO_FILL_RULE_WINDING: _cairo_fill_rule = 0;
+pub const CAIRO_FILL_RULE_EVEN_ODD: _cairo_fill_rule = 1;
 /// cairo_fill_rule_t:
 /// @CAIRO_FILL_RULE_WINDING: If the path crosses the ray from
 /// left-to-right, counts +1. If the path crosses the ray
@@ -694,11 +680,7 @@ extern "C" {
 /// New entries may be added in future versions.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_fill_rule {
-    CAIRO_FILL_RULE_WINDING = 0,
-    CAIRO_FILL_RULE_EVEN_ODD = 1,
-}
+pub type _cairo_fill_rule = ::libc::c_uint;
 pub use self::_cairo_fill_rule as cairo_fill_rule_t;
 extern "C" {
     pub fn cairo_set_fill_rule(cr: *mut cairo_t,
@@ -707,7 +689,9 @@ extern "C" {
 extern "C" {
     pub fn cairo_set_line_width(cr: *mut cairo_t, width: f64);
 }
-#[repr(u32)]
+pub const CAIRO_LINE_CAP_BUTT: _cairo_line_cap = 0;
+pub const CAIRO_LINE_CAP_ROUND: _cairo_line_cap = 1;
+pub const CAIRO_LINE_CAP_SQUARE: _cairo_line_cap = 2;
 /// cairo_line_cap_t:
 /// @CAIRO_LINE_CAP_BUTT: start(stop) the line exactly at the start(end) point (Since 1.0)
 /// @CAIRO_LINE_CAP_ROUND: use a round ending, the center of the circle is the end point (Since 1.0)
@@ -718,17 +702,14 @@ extern "C" {
 /// The default line cap style is %CAIRO_LINE_CAP_BUTT.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_line_cap {
-    CAIRO_LINE_CAP_BUTT = 0,
-    CAIRO_LINE_CAP_ROUND = 1,
-    CAIRO_LINE_CAP_SQUARE = 2,
-}
+pub type _cairo_line_cap = ::libc::c_uint;
 pub use self::_cairo_line_cap as cairo_line_cap_t;
 extern "C" {
     pub fn cairo_set_line_cap(cr: *mut cairo_t, line_cap: cairo_line_cap_t);
 }
-#[repr(u32)]
+pub const CAIRO_LINE_JOIN_MITER: _cairo_line_join = 0;
+pub const CAIRO_LINE_JOIN_ROUND: _cairo_line_join = 1;
+pub const CAIRO_LINE_JOIN_BEVEL: _cairo_line_join = 2;
 /// cairo_line_join_t:
 /// @CAIRO_LINE_JOIN_MITER: use a sharp (angled) corner, see
 /// cairo_set_miter_limit() (Since 1.0)
@@ -742,12 +723,7 @@ extern "C" {
 /// The default line join style is %CAIRO_LINE_JOIN_MITER.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_line_join {
-    CAIRO_LINE_JOIN_MITER = 0,
-    CAIRO_LINE_JOIN_ROUND = 1,
-    CAIRO_LINE_JOIN_BEVEL = 2,
-}
+pub type _cairo_line_join = ::libc::c_uint;
 pub use self::_cairo_line_join as cairo_line_join_t;
 extern "C" {
     pub fn cairo_set_line_join(cr: *mut cairo_t,
@@ -1073,7 +1049,7 @@ extern "C" {
 extern "C" {
     pub fn cairo_text_cluster_free(clusters: *mut cairo_text_cluster_t);
 }
-#[repr(u32)]
+pub const CAIRO_TEXT_CLUSTER_FLAG_BACKWARD: _cairo_text_cluster_flags = 1;
 /// cairo_text_cluster_flags_t:
 /// @CAIRO_TEXT_CLUSTER_FLAG_BACKWARD: The clusters in the cluster array
 /// map to glyphs in the glyph array from end to start. (Since 1.8)
@@ -1081,8 +1057,7 @@ extern "C" {
 /// Specifies properties of a text cluster mapping.
 ///
 /// Since: 1.8
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_text_cluster_flags { CAIRO_TEXT_CLUSTER_FLAG_BACKWARD = 1, }
+pub type _cairo_text_cluster_flags = ::libc::c_uint;
 pub use self::_cairo_text_cluster_flags as cairo_text_cluster_flags_t;
 /// cairo_text_extents_t:
 /// @x_bearing: the horizontal distance from the origin to the
@@ -1177,7 +1152,9 @@ pub struct cairo_font_extents_t {
 impl Clone for cairo_font_extents_t {
     fn clone(&self) -> Self { *self }
 }
-#[repr(u32)]
+pub const CAIRO_FONT_SLANT_NORMAL: _cairo_font_slant = 0;
+pub const CAIRO_FONT_SLANT_ITALIC: _cairo_font_slant = 1;
+pub const CAIRO_FONT_SLANT_OBLIQUE: _cairo_font_slant = 2;
 /// cairo_font_slant_t:
 /// @CAIRO_FONT_SLANT_NORMAL: Upright font style, since 1.0
 /// @CAIRO_FONT_SLANT_ITALIC: Italic font style, since 1.0
@@ -1186,14 +1163,10 @@ impl Clone for cairo_font_extents_t {
 /// Specifies variants of a font face based on their slant.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_font_slant {
-    CAIRO_FONT_SLANT_NORMAL = 0,
-    CAIRO_FONT_SLANT_ITALIC = 1,
-    CAIRO_FONT_SLANT_OBLIQUE = 2,
-}
+pub type _cairo_font_slant = ::libc::c_uint;
 pub use self::_cairo_font_slant as cairo_font_slant_t;
-#[repr(u32)]
+pub const CAIRO_FONT_WEIGHT_NORMAL: _cairo_font_weight = 0;
+pub const CAIRO_FONT_WEIGHT_BOLD: _cairo_font_weight = 1;
 /// cairo_font_weight_t:
 /// @CAIRO_FONT_WEIGHT_NORMAL: Normal font weight, since 1.0
 /// @CAIRO_FONT_WEIGHT_BOLD: Bold font weight, since 1.0
@@ -1201,13 +1174,13 @@ pub use self::_cairo_font_slant as cairo_font_slant_t;
 /// Specifies variants of a font face based on their weight.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_font_weight {
-    CAIRO_FONT_WEIGHT_NORMAL = 0,
-    CAIRO_FONT_WEIGHT_BOLD = 1,
-}
+pub type _cairo_font_weight = ::libc::c_uint;
 pub use self::_cairo_font_weight as cairo_font_weight_t;
-#[repr(u32)]
+pub const CAIRO_SUBPIXEL_ORDER_DEFAULT: _cairo_subpixel_order = 0;
+pub const CAIRO_SUBPIXEL_ORDER_RGB: _cairo_subpixel_order = 1;
+pub const CAIRO_SUBPIXEL_ORDER_BGR: _cairo_subpixel_order = 2;
+pub const CAIRO_SUBPIXEL_ORDER_VRGB: _cairo_subpixel_order = 3;
+pub const CAIRO_SUBPIXEL_ORDER_VBGR: _cairo_subpixel_order = 4;
 /// cairo_subpixel_order_t:
 /// @CAIRO_SUBPIXEL_ORDER_DEFAULT: Use the default subpixel order for
 /// for the target device, since 1.0
@@ -1225,16 +1198,13 @@ pub use self::_cairo_font_weight as cairo_font_weight_t;
 /// antialiasing mode of %CAIRO_ANTIALIAS_SUBPIXEL.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_subpixel_order {
-    CAIRO_SUBPIXEL_ORDER_DEFAULT = 0,
-    CAIRO_SUBPIXEL_ORDER_RGB = 1,
-    CAIRO_SUBPIXEL_ORDER_BGR = 2,
-    CAIRO_SUBPIXEL_ORDER_VRGB = 3,
-    CAIRO_SUBPIXEL_ORDER_VBGR = 4,
-}
+pub type _cairo_subpixel_order = ::libc::c_uint;
 pub use self::_cairo_subpixel_order as cairo_subpixel_order_t;
-#[repr(u32)]
+pub const CAIRO_HINT_STYLE_DEFAULT: _cairo_hint_style = 0;
+pub const CAIRO_HINT_STYLE_NONE: _cairo_hint_style = 1;
+pub const CAIRO_HINT_STYLE_SLIGHT: _cairo_hint_style = 2;
+pub const CAIRO_HINT_STYLE_MEDIUM: _cairo_hint_style = 3;
+pub const CAIRO_HINT_STYLE_FULL: _cairo_hint_style = 4;
 /// cairo_hint_style_t:
 /// @CAIRO_HINT_STYLE_DEFAULT: Use the default hint style for
 /// font backend and target device, since 1.0
@@ -1257,16 +1227,11 @@ pub use self::_cairo_subpixel_order as cairo_subpixel_order_t;
 /// New entries may be added in future versions.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_hint_style {
-    CAIRO_HINT_STYLE_DEFAULT = 0,
-    CAIRO_HINT_STYLE_NONE = 1,
-    CAIRO_HINT_STYLE_SLIGHT = 2,
-    CAIRO_HINT_STYLE_MEDIUM = 3,
-    CAIRO_HINT_STYLE_FULL = 4,
-}
+pub type _cairo_hint_style = ::libc::c_uint;
 pub use self::_cairo_hint_style as cairo_hint_style_t;
-#[repr(u32)]
+pub const CAIRO_HINT_METRICS_DEFAULT: _cairo_hint_metrics = 0;
+pub const CAIRO_HINT_METRICS_OFF: _cairo_hint_metrics = 1;
+pub const CAIRO_HINT_METRICS_ON: _cairo_hint_metrics = 2;
 /// cairo_hint_metrics_t:
 /// @CAIRO_HINT_METRICS_DEFAULT: Hint metrics in the default
 /// manner for the font backend and target device, since 1.0
@@ -1280,12 +1245,7 @@ pub use self::_cairo_hint_style as cairo_hint_style_t;
 /// will be laid out differently at different zoom factors.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_hint_metrics {
-    CAIRO_HINT_METRICS_DEFAULT = 0,
-    CAIRO_HINT_METRICS_OFF = 1,
-    CAIRO_HINT_METRICS_ON = 2,
-}
+pub type _cairo_hint_metrics = ::libc::c_uint;
 pub use self::_cairo_hint_metrics as cairo_hint_metrics_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -1475,7 +1435,11 @@ extern "C" {
     pub fn cairo_font_face_status(font_face: *mut cairo_font_face_t)
      -> cairo_status_t;
 }
-#[repr(u32)]
+pub const CAIRO_FONT_TYPE_TOY: _cairo_font_type = 0;
+pub const CAIRO_FONT_TYPE_FT: _cairo_font_type = 1;
+pub const CAIRO_FONT_TYPE_WIN32: _cairo_font_type = 2;
+pub const CAIRO_FONT_TYPE_QUARTZ: _cairo_font_type = 3;
+pub const CAIRO_FONT_TYPE_USER: _cairo_font_type = 4;
 /// cairo_font_type_t:
 /// @CAIRO_FONT_TYPE_TOY: The font was created using cairo's toy font api (Since: 1.2)
 /// @CAIRO_FONT_TYPE_FT: The font is of type FreeType (Since: 1.2)
@@ -1513,14 +1477,7 @@ extern "C" {
 /// New entries may be added in future versions.
 ///
 /// Since: 1.2
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_font_type {
-    CAIRO_FONT_TYPE_TOY = 0,
-    CAIRO_FONT_TYPE_FT = 1,
-    CAIRO_FONT_TYPE_WIN32 = 2,
-    CAIRO_FONT_TYPE_QUARTZ = 3,
-    CAIRO_FONT_TYPE_USER = 4,
-}
+pub type _cairo_font_type = ::libc::c_uint;
 pub use self::_cairo_font_type as cairo_font_type_t;
 extern "C" {
     pub fn cairo_font_face_get_type(font_face: *mut cairo_font_face_t)
@@ -1962,7 +1919,10 @@ extern "C" {
 extern "C" {
     pub fn cairo_get_group_target(cr: *mut cairo_t) -> *mut cairo_surface_t;
 }
-#[repr(u32)]
+pub const CAIRO_PATH_MOVE_TO: _cairo_path_data_type = 0;
+pub const CAIRO_PATH_LINE_TO: _cairo_path_data_type = 1;
+pub const CAIRO_PATH_CURVE_TO: _cairo_path_data_type = 2;
+pub const CAIRO_PATH_CLOSE_PATH: _cairo_path_data_type = 3;
 /// cairo_path_data_type_t:
 /// @CAIRO_PATH_MOVE_TO: A move-to operation, since 1.0
 /// @CAIRO_PATH_LINE_TO: A line-to operation, since 1.0
@@ -1974,13 +1934,7 @@ extern "C" {
 /// See #cairo_path_data_t for details.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_path_data_type {
-    CAIRO_PATH_MOVE_TO = 0,
-    CAIRO_PATH_LINE_TO = 1,
-    CAIRO_PATH_CURVE_TO = 2,
-    CAIRO_PATH_CLOSE_PATH = 3,
-}
+pub type _cairo_path_data_type = ::libc::c_uint;
 pub use self::_cairo_path_data_type as cairo_path_data_type_t;
 #[repr(C)]
 #[derive(Copy)]
@@ -2130,7 +2084,15 @@ extern "C" {
     pub fn cairo_device_reference(device: *mut cairo_device_t)
      -> *mut cairo_device_t;
 }
-#[repr(i32)]
+pub const CAIRO_DEVICE_TYPE_DRM: _cairo_device_type = 0;
+pub const CAIRO_DEVICE_TYPE_GL: _cairo_device_type = 1;
+pub const CAIRO_DEVICE_TYPE_SCRIPT: _cairo_device_type = 2;
+pub const CAIRO_DEVICE_TYPE_XCB: _cairo_device_type = 3;
+pub const CAIRO_DEVICE_TYPE_XLIB: _cairo_device_type = 4;
+pub const CAIRO_DEVICE_TYPE_XML: _cairo_device_type = 5;
+pub const CAIRO_DEVICE_TYPE_COGL: _cairo_device_type = 6;
+pub const CAIRO_DEVICE_TYPE_WIN32: _cairo_device_type = 7;
+pub const CAIRO_DEVICE_TYPE_INVALID: _cairo_device_type = -1;
 /// cairo_device_type_t:
 /// @CAIRO_DEVICE_TYPE_DRM: The device is of type Direct Render Manager, since 1.10
 /// @CAIRO_DEVICE_TYPE_GL: The device is of type OpenGL, since 1.10
@@ -2160,18 +2122,7 @@ extern "C" {
 /// New entries may be added in future versions.
 ///
 /// Since: 1.10
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_device_type {
-    CAIRO_DEVICE_TYPE_DRM = 0,
-    CAIRO_DEVICE_TYPE_GL = 1,
-    CAIRO_DEVICE_TYPE_SCRIPT = 2,
-    CAIRO_DEVICE_TYPE_XCB = 3,
-    CAIRO_DEVICE_TYPE_XLIB = 4,
-    CAIRO_DEVICE_TYPE_XML = 5,
-    CAIRO_DEVICE_TYPE_COGL = 6,
-    CAIRO_DEVICE_TYPE_WIN32 = 7,
-    CAIRO_DEVICE_TYPE_INVALID = -1,
-}
+pub type _cairo_device_type = ::libc::c_int;
 pub use self::_cairo_device_type as cairo_device_type_t;
 extern "C" {
     pub fn cairo_device_get_type(device: *mut cairo_device_t)
@@ -2241,7 +2192,10 @@ extern "C" {
                                               height: f64)
      -> *mut cairo_surface_t;
 }
-#[repr(u32)]
+pub const CAIRO_SURFACE_OBSERVER_NORMAL: cairo_surface_observer_mode_t = 0;
+pub const CAIRO_SURFACE_OBSERVER_RECORD_OPERATIONS:
+          cairo_surface_observer_mode_t =
+    1;
 /// cairo_surface_observer_mode_t:
 /// @CAIRO_SURFACE_OBSERVER_NORMAL: no recording is done
 /// @CAIRO_SURFACE_OBSERVER_RECORD_OPERATIONS: operations are recorded
@@ -2249,11 +2203,7 @@ extern "C" {
 /// Whether operations should be recorded.
 ///
 /// Since: 1.12
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum cairo_surface_observer_mode_t {
-    CAIRO_SURFACE_OBSERVER_NORMAL = 0,
-    CAIRO_SURFACE_OBSERVER_RECORD_OPERATIONS = 1,
-}
+pub type cairo_surface_observer_mode_t = ::libc::c_uint;
 extern "C" {
     pub fn cairo_surface_create_observer(target: *mut cairo_surface_t,
                                          mode: cairo_surface_observer_mode_t)
@@ -2386,7 +2336,31 @@ extern "C" {
     pub fn cairo_surface_status(surface: *mut cairo_surface_t)
      -> cairo_status_t;
 }
-#[repr(u32)]
+pub const CAIRO_SURFACE_TYPE_IMAGE: _cairo_surface_type = 0;
+pub const CAIRO_SURFACE_TYPE_PDF: _cairo_surface_type = 1;
+pub const CAIRO_SURFACE_TYPE_PS: _cairo_surface_type = 2;
+pub const CAIRO_SURFACE_TYPE_XLIB: _cairo_surface_type = 3;
+pub const CAIRO_SURFACE_TYPE_XCB: _cairo_surface_type = 4;
+pub const CAIRO_SURFACE_TYPE_GLITZ: _cairo_surface_type = 5;
+pub const CAIRO_SURFACE_TYPE_QUARTZ: _cairo_surface_type = 6;
+pub const CAIRO_SURFACE_TYPE_WIN32: _cairo_surface_type = 7;
+pub const CAIRO_SURFACE_TYPE_BEOS: _cairo_surface_type = 8;
+pub const CAIRO_SURFACE_TYPE_DIRECTFB: _cairo_surface_type = 9;
+pub const CAIRO_SURFACE_TYPE_SVG: _cairo_surface_type = 10;
+pub const CAIRO_SURFACE_TYPE_OS2: _cairo_surface_type = 11;
+pub const CAIRO_SURFACE_TYPE_WIN32_PRINTING: _cairo_surface_type = 12;
+pub const CAIRO_SURFACE_TYPE_QUARTZ_IMAGE: _cairo_surface_type = 13;
+pub const CAIRO_SURFACE_TYPE_SCRIPT: _cairo_surface_type = 14;
+pub const CAIRO_SURFACE_TYPE_QT: _cairo_surface_type = 15;
+pub const CAIRO_SURFACE_TYPE_RECORDING: _cairo_surface_type = 16;
+pub const CAIRO_SURFACE_TYPE_VG: _cairo_surface_type = 17;
+pub const CAIRO_SURFACE_TYPE_GL: _cairo_surface_type = 18;
+pub const CAIRO_SURFACE_TYPE_DRM: _cairo_surface_type = 19;
+pub const CAIRO_SURFACE_TYPE_TEE: _cairo_surface_type = 20;
+pub const CAIRO_SURFACE_TYPE_XML: _cairo_surface_type = 21;
+pub const CAIRO_SURFACE_TYPE_SKIA: _cairo_surface_type = 22;
+pub const CAIRO_SURFACE_TYPE_SUBSURFACE: _cairo_surface_type = 23;
+pub const CAIRO_SURFACE_TYPE_COGL: _cairo_surface_type = 24;
 /// cairo_surface_type_t:
 /// @CAIRO_SURFACE_TYPE_IMAGE: The surface is of type image, since 1.2
 /// @CAIRO_SURFACE_TYPE_PDF: The surface is of type pdf, since 1.2
@@ -2438,34 +2412,7 @@ extern "C" {
 /// New entries may be added in future versions.
 ///
 /// Since: 1.2
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_surface_type {
-    CAIRO_SURFACE_TYPE_IMAGE = 0,
-    CAIRO_SURFACE_TYPE_PDF = 1,
-    CAIRO_SURFACE_TYPE_PS = 2,
-    CAIRO_SURFACE_TYPE_XLIB = 3,
-    CAIRO_SURFACE_TYPE_XCB = 4,
-    CAIRO_SURFACE_TYPE_GLITZ = 5,
-    CAIRO_SURFACE_TYPE_QUARTZ = 6,
-    CAIRO_SURFACE_TYPE_WIN32 = 7,
-    CAIRO_SURFACE_TYPE_BEOS = 8,
-    CAIRO_SURFACE_TYPE_DIRECTFB = 9,
-    CAIRO_SURFACE_TYPE_SVG = 10,
-    CAIRO_SURFACE_TYPE_OS2 = 11,
-    CAIRO_SURFACE_TYPE_WIN32_PRINTING = 12,
-    CAIRO_SURFACE_TYPE_QUARTZ_IMAGE = 13,
-    CAIRO_SURFACE_TYPE_SCRIPT = 14,
-    CAIRO_SURFACE_TYPE_QT = 15,
-    CAIRO_SURFACE_TYPE_RECORDING = 16,
-    CAIRO_SURFACE_TYPE_VG = 17,
-    CAIRO_SURFACE_TYPE_GL = 18,
-    CAIRO_SURFACE_TYPE_DRM = 19,
-    CAIRO_SURFACE_TYPE_TEE = 20,
-    CAIRO_SURFACE_TYPE_XML = 21,
-    CAIRO_SURFACE_TYPE_SKIA = 22,
-    CAIRO_SURFACE_TYPE_SUBSURFACE = 23,
-    CAIRO_SURFACE_TYPE_COGL = 24,
-}
+pub type _cairo_surface_type = ::libc::c_uint;
 pub use self::_cairo_surface_type as cairo_surface_type_t;
 extern "C" {
     pub fn cairo_surface_get_type(surface: *mut cairo_surface_t)
@@ -2855,7 +2802,12 @@ extern "C" {
                                        destroy: cairo_destroy_func_t)
      -> cairo_status_t;
 }
-#[repr(u32)]
+pub const CAIRO_PATTERN_TYPE_SOLID: _cairo_pattern_type = 0;
+pub const CAIRO_PATTERN_TYPE_SURFACE: _cairo_pattern_type = 1;
+pub const CAIRO_PATTERN_TYPE_LINEAR: _cairo_pattern_type = 2;
+pub const CAIRO_PATTERN_TYPE_RADIAL: _cairo_pattern_type = 3;
+pub const CAIRO_PATTERN_TYPE_MESH: _cairo_pattern_type = 4;
+pub const CAIRO_PATTERN_TYPE_RASTER_SOURCE: _cairo_pattern_type = 5;
 /// cairo_pattern_type_t:
 /// @CAIRO_PATTERN_TYPE_SOLID: The pattern is a solid (uniform)
 /// color. It may be opaque or translucent, since 1.2.
@@ -2886,15 +2838,7 @@ extern "C" {
 /// New entries may be added in future versions.
 ///
 /// Since: 1.2
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_pattern_type {
-    CAIRO_PATTERN_TYPE_SOLID = 0,
-    CAIRO_PATTERN_TYPE_SURFACE = 1,
-    CAIRO_PATTERN_TYPE_LINEAR = 2,
-    CAIRO_PATTERN_TYPE_RADIAL = 3,
-    CAIRO_PATTERN_TYPE_MESH = 4,
-    CAIRO_PATTERN_TYPE_RASTER_SOURCE = 5,
-}
+pub type _cairo_pattern_type = ::libc::c_uint;
 pub use self::_cairo_pattern_type as cairo_pattern_type_t;
 extern "C" {
     pub fn cairo_pattern_get_type(pattern: *mut cairo_pattern_t)
@@ -2958,7 +2902,10 @@ extern "C" {
     pub fn cairo_pattern_get_matrix(pattern: *mut cairo_pattern_t,
                                     matrix: *mut cairo_matrix_t);
 }
-#[repr(u32)]
+pub const CAIRO_EXTEND_NONE: _cairo_extend = 0;
+pub const CAIRO_EXTEND_REPEAT: _cairo_extend = 1;
+pub const CAIRO_EXTEND_REFLECT: _cairo_extend = 2;
+pub const CAIRO_EXTEND_PAD: _cairo_extend = 3;
 /// cairo_extend_t:
 /// @CAIRO_EXTEND_NONE: pixels outside of the source pattern
 /// are fully transparent (Since 1.0)
@@ -2982,13 +2929,7 @@ extern "C" {
 /// New entries may be added in future versions.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_extend {
-    CAIRO_EXTEND_NONE = 0,
-    CAIRO_EXTEND_REPEAT = 1,
-    CAIRO_EXTEND_REFLECT = 2,
-    CAIRO_EXTEND_PAD = 3,
-}
+pub type _cairo_extend = ::libc::c_uint;
 pub use self::_cairo_extend as cairo_extend_t;
 extern "C" {
     pub fn cairo_pattern_set_extend(pattern: *mut cairo_pattern_t,
@@ -2998,7 +2939,12 @@ extern "C" {
     pub fn cairo_pattern_get_extend(pattern: *mut cairo_pattern_t)
      -> cairo_extend_t;
 }
-#[repr(u32)]
+pub const CAIRO_FILTER_FAST: _cairo_filter = 0;
+pub const CAIRO_FILTER_GOOD: _cairo_filter = 1;
+pub const CAIRO_FILTER_BEST: _cairo_filter = 2;
+pub const CAIRO_FILTER_NEAREST: _cairo_filter = 3;
+pub const CAIRO_FILTER_BILINEAR: _cairo_filter = 4;
+pub const CAIRO_FILTER_GAUSSIAN: _cairo_filter = 5;
 /// cairo_filter_t:
 /// @CAIRO_FILTER_FAST: A high-performance filter, with quality similar
 /// to %CAIRO_FILTER_NEAREST (Since 1.0)
@@ -3017,15 +2963,7 @@ extern "C" {
 /// used with a particular pattern.
 ///
 /// Since: 1.0
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_filter {
-    CAIRO_FILTER_FAST = 0,
-    CAIRO_FILTER_GOOD = 1,
-    CAIRO_FILTER_BEST = 2,
-    CAIRO_FILTER_NEAREST = 3,
-    CAIRO_FILTER_BILINEAR = 4,
-    CAIRO_FILTER_GAUSSIAN = 5,
-}
+pub type _cairo_filter = ::libc::c_uint;
 pub use self::_cairo_filter as cairo_filter_t;
 extern "C" {
     pub fn cairo_pattern_set_filter(pattern: *mut cairo_pattern_t,
@@ -3163,7 +3101,9 @@ pub struct _cairo_region {
 ///
 /// Since: 1.10
 pub type cairo_region_t = _cairo_region;
-#[repr(u32)]
+pub const CAIRO_REGION_OVERLAP_IN: _cairo_region_overlap = 0;
+pub const CAIRO_REGION_OVERLAP_OUT: _cairo_region_overlap = 1;
+pub const CAIRO_REGION_OVERLAP_PART: _cairo_region_overlap = 2;
 /// cairo_region_overlap_t:
 /// @CAIRO_REGION_OVERLAP_IN: The contents are entirely inside the region. (Since 1.10)
 /// @CAIRO_REGION_OVERLAP_OUT: The contents are entirely outside the region. (Since 1.10)
@@ -3173,12 +3113,7 @@ pub type cairo_region_t = _cairo_region;
 /// Used as the return value for cairo_region_contains_rectangle().
 ///
 /// Since: 1.10
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_region_overlap {
-    CAIRO_REGION_OVERLAP_IN = 0,
-    CAIRO_REGION_OVERLAP_OUT = 1,
-    CAIRO_REGION_OVERLAP_PART = 2,
-}
+pub type _cairo_region_overlap = ::libc::c_uint;
 pub use self::_cairo_region_overlap as cairo_region_overlap_t;
 extern "C" {
     pub fn cairo_region_create() -> *mut cairo_region_t;
@@ -3288,7 +3223,8 @@ extern "C" {
 extern "C" {
     pub fn cairo_debug_reset_static_data();
 }
-#[repr(u32)]
+pub const CAIRO_PDF_VERSION_1_4: _cairo_pdf_version = 0;
+pub const CAIRO_PDF_VERSION_1_5: _cairo_pdf_version = 1;
 /// cairo_pdf_version_t:
 /// @CAIRO_PDF_VERSION_1_4: The version 1.4 of the PDF specification. (Since 1.10)
 /// @CAIRO_PDF_VERSION_1_5: The version 1.5 of the PDF specification. (Since 1.10)
@@ -3297,11 +3233,7 @@ extern "C" {
 /// specification that a generated PDF file will conform to.
 ///
 /// Since: 1.10
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_pdf_version {
-    CAIRO_PDF_VERSION_1_4 = 0,
-    CAIRO_PDF_VERSION_1_5 = 1,
-}
+pub type _cairo_pdf_version = ::libc::c_uint;
 pub use self::_cairo_pdf_version as cairo_pdf_version_t;
 extern "C" {
     pub fn cairo_pdf_surface_create(filename: *const ::libc::c_char,
@@ -3335,7 +3267,9 @@ extern "C" {
                                       width_in_points: f64,
                                       height_in_points: f64);
 }
-#[repr(u32)]
+pub const CAIRO_PDF_OUTLINE_FLAG_OPEN: _cairo_pdf_outline_flags = 1;
+pub const CAIRO_PDF_OUTLINE_FLAG_BOLD: _cairo_pdf_outline_flags = 2;
+pub const CAIRO_PDF_OUTLINE_FLAG_ITALIC: _cairo_pdf_outline_flags = 4;
 /// cairo_pdf_outline_flags_t:
 /// @CAIRO_PDF_OUTLINE_FLAG_OPEN: The outline item defaults to open in the PDF viewer (Since 1.16)
 /// @CAIRO_PDF_OUTLINE_FLAG_BOLD: The outline item is displayed by the viewer in bold text (Since 1.16)
@@ -3347,12 +3281,7 @@ extern "C" {
 /// combination of flags.
 ///
 /// Since: 1.16
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_pdf_outline_flags {
-    CAIRO_PDF_OUTLINE_FLAG_OPEN = 1,
-    CAIRO_PDF_OUTLINE_FLAG_BOLD = 2,
-    CAIRO_PDF_OUTLINE_FLAG_ITALIC = 4,
-}
+pub type _cairo_pdf_outline_flags = ::libc::c_uint;
 pub use self::_cairo_pdf_outline_flags as cairo_pdf_outline_flags_t;
 extern "C" {
     pub fn cairo_pdf_surface_add_outline(surface: *mut cairo_surface_t,
@@ -3362,7 +3291,13 @@ extern "C" {
                                          flags: cairo_pdf_outline_flags_t)
      -> ::libc::c_int;
 }
-#[repr(u32)]
+pub const CAIRO_PDF_METADATA_TITLE: _cairo_pdf_metadata = 0;
+pub const CAIRO_PDF_METADATA_AUTHOR: _cairo_pdf_metadata = 1;
+pub const CAIRO_PDF_METADATA_SUBJECT: _cairo_pdf_metadata = 2;
+pub const CAIRO_PDF_METADATA_KEYWORDS: _cairo_pdf_metadata = 3;
+pub const CAIRO_PDF_METADATA_CREATOR: _cairo_pdf_metadata = 4;
+pub const CAIRO_PDF_METADATA_CREATE_DATE: _cairo_pdf_metadata = 5;
+pub const CAIRO_PDF_METADATA_MOD_DATE: _cairo_pdf_metadata = 6;
 /// cairo_pdf_metadata_t:
 /// @CAIRO_PDF_METADATA_TITLE: The document title (Since 1.16)
 /// @CAIRO_PDF_METADATA_AUTHOR: The document author (Since 1.16)
@@ -3376,16 +3311,7 @@ extern "C" {
 /// cairo_pdf_surface_set_metadata() function specify the metadata to set.
 ///
 /// Since: 1.16
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_pdf_metadata {
-    CAIRO_PDF_METADATA_TITLE = 0,
-    CAIRO_PDF_METADATA_AUTHOR = 1,
-    CAIRO_PDF_METADATA_SUBJECT = 2,
-    CAIRO_PDF_METADATA_KEYWORDS = 3,
-    CAIRO_PDF_METADATA_CREATOR = 4,
-    CAIRO_PDF_METADATA_CREATE_DATE = 5,
-    CAIRO_PDF_METADATA_MOD_DATE = 6,
-}
+pub type _cairo_pdf_metadata = ::libc::c_uint;
 pub use self::_cairo_pdf_metadata as cairo_pdf_metadata_t;
 extern "C" {
     pub fn cairo_pdf_surface_set_metadata(surface: *mut cairo_surface_t,
@@ -3401,7 +3327,8 @@ extern "C" {
                                                 width: ::libc::c_int,
                                                 height: ::libc::c_int);
 }
-#[repr(u32)]
+pub const CAIRO_PS_LEVEL_2: _cairo_ps_level = 0;
+pub const CAIRO_PS_LEVEL_3: _cairo_ps_level = 1;
 /// cairo_ps_level_t:
 /// @CAIRO_PS_LEVEL_2: The language level 2 of the PostScript specification. (Since 1.6)
 /// @CAIRO_PS_LEVEL_3: The language level 3 of the PostScript specification. (Since 1.6)
@@ -3411,8 +3338,7 @@ extern "C" {
 /// conform to.
 ///
 /// Since: 1.6
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_ps_level { CAIRO_PS_LEVEL_2 = 0, CAIRO_PS_LEVEL_3 = 1, }
+pub type _cairo_ps_level = ::libc::c_uint;
 pub use self::_cairo_ps_level as cairo_ps_level_t;
 extern "C" {
     pub fn cairo_ps_surface_create(filename: *const ::libc::c_char,
@@ -3463,7 +3389,8 @@ extern "C" {
     pub fn cairo_ps_surface_dsc_begin_page_setup(surface:
                                                      *mut cairo_surface_t);
 }
-#[repr(u32)]
+pub const CAIRO_SCRIPT_MODE_ASCII: cairo_script_mode_t = 0;
+pub const CAIRO_SCRIPT_MODE_BINARY: cairo_script_mode_t = 1;
 /// cairo_script_mode_t:
 /// @CAIRO_SCRIPT_MODE_ASCII: the output will be in readable text (default). (Since 1.12)
 /// @CAIRO_SCRIPT_MODE_BINARY: the output will use byte codes. (Since 1.12)
@@ -3471,11 +3398,7 @@ extern "C" {
 /// A set of script output variants.
 ///
 /// Since: 1.12
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum cairo_script_mode_t {
-    CAIRO_SCRIPT_MODE_ASCII = 0,
-    CAIRO_SCRIPT_MODE_BINARY = 1,
-}
+pub type cairo_script_mode_t = ::libc::c_uint;
 extern "C" {
     pub fn cairo_script_create(filename: *const ::libc::c_char)
      -> *mut cairo_device_t;
@@ -3515,7 +3438,8 @@ extern "C" {
                                                    *mut cairo_surface_t)
      -> cairo_status_t;
 }
-#[repr(u32)]
+pub const CAIRO_SVG_VERSION_1_1: _cairo_svg_version = 0;
+pub const CAIRO_SVG_VERSION_1_2: _cairo_svg_version = 1;
 /// cairo_svg_version_t:
 /// @CAIRO_SVG_VERSION_1_1: The version 1.1 of the SVG specification. (Since 1.2)
 /// @CAIRO_SVG_VERSION_1_2: The version 1.2 of the SVG specification. (Since 1.2)
@@ -3524,11 +3448,7 @@ extern "C" {
 /// specification that a generated SVG file will conform to.
 ///
 /// Since: 1.2
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum _cairo_svg_version {
-    CAIRO_SVG_VERSION_1_1 = 0,
-    CAIRO_SVG_VERSION_1_2 = 1,
-}
+pub type _cairo_svg_version = ::libc::c_uint;
 pub use self::_cairo_svg_version as cairo_svg_version_t;
 extern "C" {
     pub fn cairo_svg_surface_create(filename: *const ::libc::c_char,
