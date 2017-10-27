@@ -24,6 +24,7 @@ pub const CAIRO_MIME_TYPE_JBIG2_GLOBAL: &'static [u8; 33usize] =
     b"application/x-cairo.jbig2-global\x00";
 pub const CAIRO_MIME_TYPE_JBIG2_GLOBAL_ID: &'static [u8; 36usize] =
     b"application/x-cairo.jbig2-global-id\x00";
+pub const CAIRO_PDF_OUTLINE_ROOT: ::libc::c_uint = 0;
 extern "C" {
     pub fn cairo_version() -> ::libc::c_int;
 }
@@ -3286,4 +3287,273 @@ extern "C" {
 }
 extern "C" {
     pub fn cairo_debug_reset_static_data();
+}
+#[repr(u32)]
+/// cairo_pdf_version_t:
+/// @CAIRO_PDF_VERSION_1_4: The version 1.4 of the PDF specification. (Since 1.10)
+/// @CAIRO_PDF_VERSION_1_5: The version 1.5 of the PDF specification. (Since 1.10)
+///
+/// #cairo_pdf_version_t is used to describe the version number of the PDF
+/// specification that a generated PDF file will conform to.
+///
+/// Since: 1.10
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub enum _cairo_pdf_version {
+    CAIRO_PDF_VERSION_1_4 = 0,
+    CAIRO_PDF_VERSION_1_5 = 1,
+}
+pub use self::_cairo_pdf_version as cairo_pdf_version_t;
+extern "C" {
+    pub fn cairo_pdf_surface_create(filename: *const ::libc::c_char,
+                                    width_in_points: f64,
+                                    height_in_points: f64)
+     -> *mut cairo_surface_t;
+}
+extern "C" {
+    pub fn cairo_pdf_surface_create_for_stream(write_func: cairo_write_func_t,
+                                               closure: *mut ::libc::c_void,
+                                               width_in_points: f64,
+                                               height_in_points: f64)
+     -> *mut cairo_surface_t;
+}
+extern "C" {
+    pub fn cairo_pdf_surface_restrict_to_version(surface:
+                                                     *mut cairo_surface_t,
+                                                 version:
+                                                     cairo_pdf_version_t);
+}
+extern "C" {
+    pub fn cairo_pdf_get_versions(versions: *mut *const cairo_pdf_version_t,
+                                  num_versions: *mut ::libc::c_int);
+}
+extern "C" {
+    pub fn cairo_pdf_version_to_string(version: cairo_pdf_version_t)
+     -> *const ::libc::c_char;
+}
+extern "C" {
+    pub fn cairo_pdf_surface_set_size(surface: *mut cairo_surface_t,
+                                      width_in_points: f64,
+                                      height_in_points: f64);
+}
+#[repr(u32)]
+/// cairo_pdf_outline_flags_t:
+/// @CAIRO_PDF_OUTLINE_FLAG_OPEN: The outline item defaults to open in the PDF viewer (Since 1.16)
+/// @CAIRO_PDF_OUTLINE_FLAG_BOLD: The outline item is displayed by the viewer in bold text (Since 1.16)
+/// @CAIRO_PDF_OUTLINE_FLAG_ITALIC: The outline item is displayed by the viewer in italic text (Since 1.16)
+///
+/// #cairo_pdf_outline_flags_t is used by the
+/// cairo_pdf_surface_add_outline() function specify the attributes of
+/// an outline item. These flags may be bitwise-or'd to produce any
+/// combination of flags.
+///
+/// Since: 1.16
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub enum _cairo_pdf_outline_flags {
+    CAIRO_PDF_OUTLINE_FLAG_OPEN = 1,
+    CAIRO_PDF_OUTLINE_FLAG_BOLD = 2,
+    CAIRO_PDF_OUTLINE_FLAG_ITALIC = 4,
+}
+pub use self::_cairo_pdf_outline_flags as cairo_pdf_outline_flags_t;
+extern "C" {
+    pub fn cairo_pdf_surface_add_outline(surface: *mut cairo_surface_t,
+                                         parent_id: ::libc::c_int,
+                                         utf8: *const ::libc::c_char,
+                                         link_attribs: *const ::libc::c_char,
+                                         flags: cairo_pdf_outline_flags_t)
+     -> ::libc::c_int;
+}
+#[repr(u32)]
+/// cairo_pdf_metadata_t:
+/// @CAIRO_PDF_METADATA_TITLE: The document title (Since 1.16)
+/// @CAIRO_PDF_METADATA_AUTHOR: The document author (Since 1.16)
+/// @CAIRO_PDF_METADATA_SUBJECT: The document subject (Since 1.16)
+/// @CAIRO_PDF_METADATA_KEYWORDS: The document keywords (Since 1.16)
+/// @CAIRO_PDF_METADATA_CREATOR: The document creator (Since 1.16)
+/// @CAIRO_PDF_METADATA_CREATE_DATE: The document creation date (Since 1.16)
+/// @CAIRO_PDF_METADATA_MOD_DATE: The document modification date (Since 1.16)
+///
+/// #cairo_pdf_metadata_t is used by the
+/// cairo_pdf_surface_set_metadata() function specify the metadata to set.
+///
+/// Since: 1.16
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub enum _cairo_pdf_metadata {
+    CAIRO_PDF_METADATA_TITLE = 0,
+    CAIRO_PDF_METADATA_AUTHOR = 1,
+    CAIRO_PDF_METADATA_SUBJECT = 2,
+    CAIRO_PDF_METADATA_KEYWORDS = 3,
+    CAIRO_PDF_METADATA_CREATOR = 4,
+    CAIRO_PDF_METADATA_CREATE_DATE = 5,
+    CAIRO_PDF_METADATA_MOD_DATE = 6,
+}
+pub use self::_cairo_pdf_metadata as cairo_pdf_metadata_t;
+extern "C" {
+    pub fn cairo_pdf_surface_set_metadata(surface: *mut cairo_surface_t,
+                                          metadata: cairo_pdf_metadata_t,
+                                          utf8: *const ::libc::c_char);
+}
+extern "C" {
+    pub fn cairo_pdf_surface_set_page_label(surface: *mut cairo_surface_t,
+                                            utf8: *const ::libc::c_char);
+}
+extern "C" {
+    pub fn cairo_pdf_surface_set_thumbnail_size(surface: *mut cairo_surface_t,
+                                                width: ::libc::c_int,
+                                                height: ::libc::c_int);
+}
+#[repr(u32)]
+/// cairo_ps_level_t:
+/// @CAIRO_PS_LEVEL_2: The language level 2 of the PostScript specification. (Since 1.6)
+/// @CAIRO_PS_LEVEL_3: The language level 3 of the PostScript specification. (Since 1.6)
+///
+/// #cairo_ps_level_t is used to describe the language level of the
+/// PostScript Language Reference that a generated PostScript file will
+/// conform to.
+///
+/// Since: 1.6
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub enum _cairo_ps_level { CAIRO_PS_LEVEL_2 = 0, CAIRO_PS_LEVEL_3 = 1, }
+pub use self::_cairo_ps_level as cairo_ps_level_t;
+extern "C" {
+    pub fn cairo_ps_surface_create(filename: *const ::libc::c_char,
+                                   width_in_points: f64,
+                                   height_in_points: f64)
+     -> *mut cairo_surface_t;
+}
+extern "C" {
+    pub fn cairo_ps_surface_create_for_stream(write_func: cairo_write_func_t,
+                                              closure: *mut ::libc::c_void,
+                                              width_in_points: f64,
+                                              height_in_points: f64)
+     -> *mut cairo_surface_t;
+}
+extern "C" {
+    pub fn cairo_ps_surface_restrict_to_level(surface: *mut cairo_surface_t,
+                                              level: cairo_ps_level_t);
+}
+extern "C" {
+    pub fn cairo_ps_get_levels(levels: *mut *const cairo_ps_level_t,
+                               num_levels: *mut ::libc::c_int);
+}
+extern "C" {
+    pub fn cairo_ps_level_to_string(level: cairo_ps_level_t)
+     -> *const ::libc::c_char;
+}
+extern "C" {
+    pub fn cairo_ps_surface_set_eps(surface: *mut cairo_surface_t,
+                                    eps: cairo_bool_t);
+}
+extern "C" {
+    pub fn cairo_ps_surface_get_eps(surface: *mut cairo_surface_t)
+     -> cairo_bool_t;
+}
+extern "C" {
+    pub fn cairo_ps_surface_set_size(surface: *mut cairo_surface_t,
+                                     width_in_points: f64,
+                                     height_in_points: f64);
+}
+extern "C" {
+    pub fn cairo_ps_surface_dsc_comment(surface: *mut cairo_surface_t,
+                                        comment: *const ::libc::c_char);
+}
+extern "C" {
+    pub fn cairo_ps_surface_dsc_begin_setup(surface: *mut cairo_surface_t);
+}
+extern "C" {
+    pub fn cairo_ps_surface_dsc_begin_page_setup(surface:
+                                                     *mut cairo_surface_t);
+}
+#[repr(u32)]
+/// cairo_script_mode_t:
+/// @CAIRO_SCRIPT_MODE_ASCII: the output will be in readable text (default). (Since 1.12)
+/// @CAIRO_SCRIPT_MODE_BINARY: the output will use byte codes. (Since 1.12)
+///
+/// A set of script output variants.
+///
+/// Since: 1.12
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub enum cairo_script_mode_t {
+    CAIRO_SCRIPT_MODE_ASCII = 0,
+    CAIRO_SCRIPT_MODE_BINARY = 1,
+}
+extern "C" {
+    pub fn cairo_script_create(filename: *const ::libc::c_char)
+     -> *mut cairo_device_t;
+}
+extern "C" {
+    pub fn cairo_script_create_for_stream(write_func: cairo_write_func_t,
+                                          closure: *mut ::libc::c_void)
+     -> *mut cairo_device_t;
+}
+extern "C" {
+    pub fn cairo_script_write_comment(script: *mut cairo_device_t,
+                                      comment: *const ::libc::c_char,
+                                      len: ::libc::c_int);
+}
+extern "C" {
+    pub fn cairo_script_set_mode(script: *mut cairo_device_t,
+                                 mode: cairo_script_mode_t);
+}
+extern "C" {
+    pub fn cairo_script_get_mode(script: *mut cairo_device_t)
+     -> cairo_script_mode_t;
+}
+extern "C" {
+    pub fn cairo_script_surface_create(script: *mut cairo_device_t,
+                                       content: cairo_content_t, width: f64,
+                                       height: f64) -> *mut cairo_surface_t;
+}
+extern "C" {
+    pub fn cairo_script_surface_create_for_target(script: *mut cairo_device_t,
+                                                  target:
+                                                      *mut cairo_surface_t)
+     -> *mut cairo_surface_t;
+}
+extern "C" {
+    pub fn cairo_script_from_recording_surface(script: *mut cairo_device_t,
+                                               recording_surface:
+                                                   *mut cairo_surface_t)
+     -> cairo_status_t;
+}
+#[repr(u32)]
+/// cairo_svg_version_t:
+/// @CAIRO_SVG_VERSION_1_1: The version 1.1 of the SVG specification. (Since 1.2)
+/// @CAIRO_SVG_VERSION_1_2: The version 1.2 of the SVG specification. (Since 1.2)
+///
+/// #cairo_svg_version_t is used to describe the version number of the SVG
+/// specification that a generated SVG file will conform to.
+///
+/// Since: 1.2
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub enum _cairo_svg_version {
+    CAIRO_SVG_VERSION_1_1 = 0,
+    CAIRO_SVG_VERSION_1_2 = 1,
+}
+pub use self::_cairo_svg_version as cairo_svg_version_t;
+extern "C" {
+    pub fn cairo_svg_surface_create(filename: *const ::libc::c_char,
+                                    width_in_points: f64,
+                                    height_in_points: f64)
+     -> *mut cairo_surface_t;
+}
+extern "C" {
+    pub fn cairo_svg_surface_create_for_stream(write_func: cairo_write_func_t,
+                                               closure: *mut ::libc::c_void,
+                                               width_in_points: f64,
+                                               height_in_points: f64)
+     -> *mut cairo_surface_t;
+}
+extern "C" {
+    pub fn cairo_svg_surface_restrict_to_version(surface:
+                                                     *mut cairo_surface_t,
+                                                 version:
+                                                     cairo_svg_version_t);
+}
+extern "C" {
+    pub fn cairo_svg_get_versions(versions: *mut *const cairo_svg_version_t,
+                                  num_versions: *mut ::libc::c_int);
+}
+extern "C" {
+    pub fn cairo_svg_version_to_string(version: cairo_svg_version_t)
+     -> *const ::libc::c_char;
 }

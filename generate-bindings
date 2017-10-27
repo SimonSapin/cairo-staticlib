@@ -1,10 +1,13 @@
 #!/bin/sh
 which bindgen > /dev/null 2>&1 || echo 'Try `cargo install bindgen`.'
-bindgen cairo-1.15.8/src/cairo.h \
+bindgen src/cairo-all.h \
     --use-core \
     --ctypes-prefix ::libc \
     --no-layout-tests \
+    --whitelist-function 'cairo_.*' \
+    --whitelist-var 'CAIRO_.*' \
     -o src/bindings.rs \
     -- \
+    -I cairo-*/src \
     -I target/debug/build/cairo-static-sys-*/out/src \
 
