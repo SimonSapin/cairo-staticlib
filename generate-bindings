@@ -11,5 +11,5 @@ bindgen src/cairo-all.h \
     -o src/bindings.rs \
     -- \
     -I cairo-*/src \
-    -I target/debug/build/cairo-static-sys-*/out/src \
+    -I target/debug/build/cairo-static-sys-*/out/cairo/src \
 

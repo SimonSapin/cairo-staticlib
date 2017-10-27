@@ -8,6 +8,7 @@ fn main() {
     let cairo_subdir = "cairo-1.15.8";
     let disabled_cairo_features = r#"
         xlib xcb qt quartz win32 skia os2 beos drm gallium gl directfb gobject fc ft
+        png svg
     "#;
 
     let src_dir = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").unwrap());

@@ -2,4 +2,3 @@
 #include "cairo-pdf.h"
 #include "cairo-ps.h"
 #include "cairo-script.h"
-#include "cairo-svg.h"

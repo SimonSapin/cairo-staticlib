@@ -4,11 +4,9 @@ pub const CAIRO_HAS_IMAGE_SURFACE: ::libc::c_uint = 1;
 pub const CAIRO_HAS_MIME_SURFACE: ::libc::c_uint = 1;
 pub const CAIRO_HAS_OBSERVER_SURFACE: ::libc::c_uint = 1;
 pub const CAIRO_HAS_PDF_SURFACE: ::libc::c_uint = 1;
-pub const CAIRO_HAS_PNG_FUNCTIONS: ::libc::c_uint = 1;
 pub const CAIRO_HAS_PS_SURFACE: ::libc::c_uint = 1;
 pub const CAIRO_HAS_RECORDING_SURFACE: ::libc::c_uint = 1;
 pub const CAIRO_HAS_SCRIPT_SURFACE: ::libc::c_uint = 1;
-pub const CAIRO_HAS_SVG_SURFACE: ::libc::c_uint = 1;
 pub const CAIRO_HAS_USER_FONT: ::libc::c_uint = 1;
 pub const CAIRO_TAG_DEST: &'static [u8; 11usize] = b"cairo.dest\x00";
 pub const CAIRO_TAG_LINK: &'static [u8; 5usize] = b"Link\x00";
@@ -386,27 +384,6 @@ pub use self::_cairo_format as cairo_format_t;
 pub type cairo_write_func_t =
     ::core::option::Option<unsafe extern "C" fn(closure: *mut ::libc::c_void,
                                                 data: *const ::libc::c_uchar,
-                                                length: ::libc::c_uint)
-                               -> cairo_status_t>;
-/// cairo_read_func_t:
-/// @closure: the input closure
-/// @data: the buffer into which to read the data
-/// @length: the amount of data to read
-///
-/// #cairo_read_func_t is the type of function which is called when a
-/// backend needs to read data from an input stream.  It is passed the
-/// closure which was specified by the user at the time the read
-/// function was registered, the buffer to read the data into and the
-/// length of the data in bytes.  The read function should return
-/// %CAIRO_STATUS_SUCCESS if all the data was successfully read,
-/// %CAIRO_STATUS_READ_ERROR otherwise.
-///
-/// Returns: the status code of the read operation
-///
-/// Since: 1.0
-pub type cairo_read_func_t =
-    ::core::option::Option<unsafe extern "C" fn(closure: *mut ::libc::c_void,
-                                                data: *mut ::libc::c_uchar,
                                                 length: ::libc::c_uint)
                                -> cairo_status_t>;
 /// cairo_rectangle_int_t:
@@ -2423,17 +2400,6 @@ extern "C" {
      -> cairo_content_t;
 }
 extern "C" {
-    pub fn cairo_surface_write_to_png(surface: *mut cairo_surface_t,
-                                      filename: *const ::libc::c_char)
-     -> cairo_status_t;
-}
-extern "C" {
-    pub fn cairo_surface_write_to_png_stream(surface: *mut cairo_surface_t,
-                                             write_func: cairo_write_func_t,
-                                             closure: *mut ::libc::c_void)
-     -> cairo_status_t;
-}
-extern "C" {
     pub fn cairo_surface_get_user_data(surface: *mut cairo_surface_t,
                                        key: *const cairo_user_data_key_t)
      -> *mut ::libc::c_void;
@@ -2560,18 +2526,6 @@ extern "C" {
 extern "C" {
     pub fn cairo_image_surface_get_stride(surface: *mut cairo_surface_t)
      -> ::libc::c_int;
-}
-extern "C" {
-    pub fn cairo_image_surface_create_from_png(filename:
-                                                   *const ::libc::c_char)
-     -> *mut cairo_surface_t;
-}
-extern "C" {
-    pub fn cairo_image_surface_create_from_png_stream(read_func:
-                                                          cairo_read_func_t,
-                                                      closure:
-                                                          *mut ::libc::c_void)
-     -> *mut cairo_surface_t;
 }
 extern "C" {
     pub fn cairo_recording_surface_create(content: cairo_content_t,
@@ -3437,43 +3391,4 @@ extern "C" {
                                                recording_surface:
                                                    *mut cairo_surface_t)
      -> cairo_status_t;
-}
-pub const CAIRO_SVG_VERSION_1_1: _cairo_svg_version = 0;
-pub const CAIRO_SVG_VERSION_1_2: _cairo_svg_version = 1;
-/// cairo_svg_version_t:
-/// @CAIRO_SVG_VERSION_1_1: The version 1.1 of the SVG specification. (Since 1.2)
-/// @CAIRO_SVG_VERSION_1_2: The version 1.2 of the SVG specification. (Since 1.2)
-///
-/// #cairo_svg_version_t is used to describe the version number of the SVG
-/// specification that a generated SVG file will conform to.
-///
-/// Since: 1.2
-pub type _cairo_svg_version = ::libc::c_uint;
-pub use self::_cairo_svg_version as cairo_svg_version_t;
-extern "C" {
-    pub fn cairo_svg_surface_create(filename: *const ::libc::c_char,
-                                    width_in_points: f64,
-                                    height_in_points: f64)
-     -> *mut cairo_surface_t;
-}
-extern "C" {
-    pub fn cairo_svg_surface_create_for_stream(write_func: cairo_write_func_t,
-                                               closure: *mut ::libc::c_void,
-                                               width_in_points: f64,
-                                               height_in_points: f64)
-     -> *mut cairo_surface_t;
-}
-extern "C" {
-    pub fn cairo_svg_surface_restrict_to_version(surface:
-                                                     *mut cairo_surface_t,
-                                                 version:
-                                                     cairo_svg_version_t);
-}
-extern "C" {
-    pub fn cairo_svg_get_versions(versions: *mut *const cairo_svg_version_t,
-                                  num_versions: *mut ::libc::c_int);
-}
-extern "C" {
-    pub fn cairo_svg_version_to_string(version: cairo_svg_version_t)
-     -> *const ::libc::c_char;
 }
