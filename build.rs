@@ -25,6 +25,7 @@ fn main() {
 
     run(Command::new(pixman_src_dir.join("configure"))
         .arg("--disable-gtk")
+        .arg("--disable-libpng")
         .current_dir(&pixman_out_dir)
     );
     run(Command::new("make")
